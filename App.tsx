@@ -6,10 +6,11 @@ import axios from 'axios';
 export default function App() {
   const [fotos, setFotos] = useState([]);
 
-  const fetchFotos= async () => {
+  const fetchFotos = async () => {
     try {
       const res = await axios.get('https://api.thecatapi.com/v1/images/search?limit=5');
-      setFotos([...fotos, ...res.data]);
+      const cincoFotos = res.data.slice(0, 5);
+      setFotos(prevFotos => [...prevFotos, ...cincoFotos]);
     } catch (error) {
       console.error('Erro ao obter as fotos:', error);
     }
