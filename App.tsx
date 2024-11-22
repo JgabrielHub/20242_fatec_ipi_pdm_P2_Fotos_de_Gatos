@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image, ScrollView, Button} from 'react-native';
+import { StyleSheet, View, Text, Image, ScrollView, Pressable } from 'react-native';
 import axios from 'axios';
 
 
@@ -17,7 +17,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Button title="Carregar Fotos" onPress={fetchFotos} />
+      <Pressable onPress={fetchFotos}  style={styles.button}>
+      <Text style={styles.text} >Carregar Fotos</Text>
+      </Pressable>
       <ScrollView style={styles.scrollView}>
         {fotos.map((photo, index) => (
           <Image key={index} source={{ uri: photo.url }} style={styles.image} />
@@ -30,16 +32,31 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#E2EAF4',
+    padding: 20,
+  },
+  image: {
+    width:  360,
+    height: 360,
+    borderRadius: 10,
+    marginBottom: 10,
+    alignSelf: 'center'
+  },
+  scrollView: {
+    marginTop: 10,
+    width: '100%',
+  },
+  button:{
     alignItems: 'center',
     justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 10,
+    backgroundColor: '#060270',
   },
-  image: { 
-    width: 300, 
-    height: 300, 
-    margin: 10 
-  },
-  ScrollView: {
-    marginTop: 5,
+  text: {
+    fontSize: 22,
+    color: 'white',
+    fontWeight: 'bold',
   }
 });
